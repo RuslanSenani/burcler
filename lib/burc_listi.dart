@@ -1,3 +1,4 @@
+import 'package:burcler/burc_item.dart';
 import 'package:burcler/data/strings.dart';
 import 'package:burcler/models/burc.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,11 @@ class BurcListi extends StatelessWidget {
       appBar: AppBar(
         title: Text("Bürclər"),
       ),
-      body: Center(
-        child: Text("Burcler Listi Burda Olacaq"),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return BurcItem(selectedBurc: burcListi[index]);
+        },
+        itemCount: burcListi.length,
       ),
     );
   }
