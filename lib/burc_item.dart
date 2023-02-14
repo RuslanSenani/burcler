@@ -17,12 +17,10 @@ class BurcItem extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => BurcDetal(
-                    secilenBurc: selectedBurc,
-                  ),
-                ),
+              Navigator.pushNamed(
+                context,
+                "/burcDetal",
+                arguments: selectedBurc,
               );
             },
             leading: CircleAvatar(

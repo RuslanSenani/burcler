@@ -1,4 +1,5 @@
 import 'package:burcler/burc_listi.dart';
+import 'package:burcler/route_generator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.pink),
-      home: BurcListi(),
+      onGenerateRoute: RouteGenerator.routeGenerator,
     );
   }
 }

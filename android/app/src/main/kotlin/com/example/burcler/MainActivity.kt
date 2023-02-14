@@ -1,4 +1,4 @@
-package com.example.burcler
+package com.burcler.burcler
 
 import io.flutter.embedding.android.FlutterActivity
 

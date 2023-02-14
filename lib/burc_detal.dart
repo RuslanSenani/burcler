@@ -17,7 +17,9 @@ class _BurcDetalState extends State<BurcDetal> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    appBarRenginTap();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      appBarRenginTap();
+    });
   }
 
   @override
@@ -31,7 +33,10 @@ class _BurcDetalState extends State<BurcDetal> {
             pinned: true,
             backgroundColor: appbarRengi,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(widget.secilenBurc.burcAdi + " Bürcü və Özəllikləri"),
+              title: Text(
+                widget.secilenBurc.burcAdi + " Bürcü və Özəllikləri",
+                style: TextStyle(fontSize: 18),
+              ),
               centerTitle: true,
               background: Image.asset(
                 'images/' + widget.secilenBurc.burcSekili,
@@ -59,7 +64,7 @@ class _BurcDetalState extends State<BurcDetal> {
   void appBarRenginTap() async {
     _generator = await PaletteGenerator.fromImageProvider(
         AssetImage("images/${widget.secilenBurc.burcSekili}"));
-    appbarRengi = _generator.vibrantColor!.color;
+    appbarRengi = _generator.mutedColor!.color;
     setState(() {});
   }
 }
