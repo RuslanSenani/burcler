@@ -25,6 +25,7 @@ class RouteGenerator {
     }
   }
 
+
   static Route<dynamic>? routeGenerator(RouteSettings settings) {
     switch (settings.name) {
       case "/":
