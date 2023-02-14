@@ -1,9 +1,24 @@
 import 'package:burcler/models/burc.dart';
 import 'package:flutter/material.dart';
+import 'package:palette_generator/palette_generator.dart';
 
-class BurcDetal extends StatelessWidget {
+class BurcDetal extends StatefulWidget {
   final Burc secilenBurc;
   const BurcDetal({super.key, required this.secilenBurc});
+
+  @override
+  State<BurcDetal> createState() => _BurcDetalState();
+}
+
+class _BurcDetalState extends State<BurcDetal> {
+  Color appbarRengi = Colors.transparent;
+  late PaletteGenerator _generator;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    appBarRenginTap();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +29,12 @@ class BurcDetal extends StatelessWidget {
           SliverAppBar(
             expandedHeight: 250,
             pinned: true,
-            backgroundColor: Colors.pink,
+            backgroundColor: appbarRengi,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(secilenBurc.burcAdi + " Bürcü və Özəllikləri"),
+              title: Text(widget.secilenBurc.burcAdi + " Bürcü və Özəllikləri"),
               centerTitle: true,
               background: Image.asset(
-                'images/' + secilenBurc.burcSekili,
+                'images/' + widget.secilenBurc.burcSekili,
                 fit: BoxFit.cover,
               ),
             ),
@@ -30,7 +45,7 @@ class BurcDetal extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: SingleChildScrollView(
                 child: Text(
-                  secilenBurc.burcDetali,
+                  widget.secilenBurc.burcDetali,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
@@ -39,5 +54,12 @@ class BurcDetal extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void appBarRenginTap() async {
+    _generator = await PaletteGenerator.fromImageProvider(
+        AssetImage("images/${widget.secilenBurc.burcSekili}"));
+    appbarRengi = _generator.vibrantColor!.color;
+    setState(() {});
   }
 }
